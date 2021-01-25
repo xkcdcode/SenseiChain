@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{{ url_for('index') }}"><h1 class="logo" style="text-align: center">Sensei Chain Demonstrator</h1></a>
+            <a href="{{ url_for('db_transactions_page') }}"><h2 style="text-align: center">List Local DB Transactions</h2></a>
+            <a href="{{ url_for('hl_transactions_page') }}"><h2 style="text-align: center">List HyperLedger Transactions</h2></a>
+            <a href="{{ url_for('create_page') }}"><h2 style="text-align: center">Create Transactions</h2></a>
+            <a href="{{ url_for('search_page') }}"><h2 style="text-align: center">Search Encrypted Transactions</h2></a>
+<!--            <a href="{{ url_for('alert_page') }}"><h2 style="text-align: center">Real-time Alerts on Encrypted Transactions</h2></a>-->
+        </div>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

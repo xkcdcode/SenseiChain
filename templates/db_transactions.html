@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block content %}
+    <h1 style="text-align: center">All Local DB Transactions</h1>
+    {% if data|length < 1 %}
+        <div class="content">
+            <h4 style="text-align: center">There are no transactions!</h4>
+            {% else %}
+                {% for item in data %}
+                    <pre>{{ item }}</pre>
+                {% endfor %}
+            {% endif %}
+</div>
+{% endblock %}

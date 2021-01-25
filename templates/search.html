@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="content">
+        <h1 style="text-align: center">Search Encrypted Transactions</h1>
+
+        <div class="form">
+            <form action="/search" method="POST">
+<!--                <label for="comparison">Select a comparison operation:</label>-->
+<!--                <select class="element select medium" id="comparison" name="comparison">-->
+<!--			    <option value=">=" selected="selected">>=</option>-->
+<!--                <option value="==" >==</option>-->
+<!--                <option value="<=" ><=</option>-->
+<!--		        </select>-->
+<!--                <p></p>-->
+                <label for="money">Enter monetary amount greater than or equal to 1 - 100 GBP:</label>
+                <input type="number" name="money" id="money" min="1" max="100" placeholder="Enter monetary amount">
+                <p></p>
+                <label for="f_name">Enter name of account holder:</label>
+                <input type="text" id="f_name" name="f_name" placeholder="Alice">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+
+    <div class="results">
+        <h3 style="text-align: center">Search Results</h3>
+        {% if data|length < 1 %}
+        <h4 style="text-align: center">No matching transactions!</h4>
+        {% else %}
+            <h4 style="text-align: center">{{ data|length }} results!</h4>
+            {% for item in data %}
+                {% set display_list = item.split('    ') %}
+                <pre style="text-align: center"><b>Transaction ID:</b> {{ display_list[0] }}    <b>Transaction Data:</b> {{display_list[2]}}   {{display_list[4]}}   {{display_list[5]}}</pre>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

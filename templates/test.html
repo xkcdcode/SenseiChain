@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" http-equiv="refresh" content="3"/>
+    <title>Test</title>
+</head>
+<body>
+<h1 style="text-align: center">Real-time Alerts on Encrypted Transactions</h1>
+    <p style="text-align: center">
+        <label for="threshold">Set alert threshold for amount:</label>
+        <input type="number" name="threshold" id="threshold" min="1" max="100" placeholder="Enter the threshold amount (GBP)">
+
+    <h3 style="text-align: center">Search Results</h3>
+        {% if data|length < 1 %}
+        <h4 style="text-align: center">No matching transactions!</h4>
+        {% else %}
+            <h4 style="text-align: center">{{ data|length }} results!</h4>
+            {% for item in data %}
+                <pre style="text-align: center">Transaction ID: {{ item }}</pre>
+            {% endfor %}
+        {% endif %}
+</body>
+</html>

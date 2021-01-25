@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Alerts on Encrypted Transactions</title>
+</head>
+<body>
+<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+    <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script>
+    <script type=text/javascript>
+        setInterval(function () {
+                $.getJSON('http://0.0.0.0:8080/realtime', {
+                    threshold: $('input[name="threshold"]').val(),
+                    f_name: $('input[name="f_name"]').val()
+                }, function (data) {
+                    $("#result").text("Results: ".concat(Object.keys(data.result).length));
+                    $("#result").append('\n');
+                    for(let i = 0; i < Object.keys(data.result).length; i++) {
+                        $("#result").append(data.result[i]);
+                        $("#result").append('\n');
+                    }
+
+                    // $("#result").text(Object.keys(data.result).length);
+                    // $("#result").text(Object.values(data.result));
+                });
+        }, 5000);
+    </script>
+    <h1 style="text-align: center">Real-time Alerts on Encrypted Transactions</h1>
+    <p style="text-align: center">
+        <label for="threshold">Set alert threshold amount:</label>
+        <input type="number" name="threshold" id="threshold" min="1" max="100" placeholder="Enter the threshold amount (GBP)">
+<!--        <p></p>-->
+        <label for="f_name">Set alert for Name:</label>
+        <input type="text" name="f_name" id="f_name" placeholder="Alice"> <a href=# id=calculate>Set thresholds</a>
+
+        <h2 style="text-align: center">Alerts for Transaction IDs:</h2>
+        <pre style="text-align: center; font-size: 20px">
+            <span id=result style="text-align: center"></span>
+        </pre>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="content">
+        <h1 style="text-align: center">Create Transactions</h1>
+
+        <div class="form">
+            <form action="/create" method="POST">
+                <label for="entries">Number of New Entries (1 - 100):</label>
+                <input type="number" name="entries" id="entries" min="1" max="100" placeholder="Enter number of entries">
+                <input type="submit" value="Create">
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

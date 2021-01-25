@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block content %}
+    <h1 style="text-align: center">All HyperLedger Transactions</h1>
+    {% if data|length < 1 %}
+        <div class="content">
+            <h4 style="text-align: center">There are no transactions!</h4>
+            {% else %}
+                {% for key, value in data.items() %}
+                    {% set display_list = value.split('    ') %}
+                    <pre style="text-align: center"><b>Transaction ID:</b> {{ key }}     <b>Transaction Data:</b> {{display_list[1]}}   {{display_list[3]}}   {{display_list[4]}}</pre>
+                {% endfor %}
+            {% endif %}
+</div>
+{% endblock %}
